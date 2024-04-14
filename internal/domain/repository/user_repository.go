@@ -5,6 +5,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// Operaciones que se pueden realizar con un usuario
 type UserRepository interface {
 	Create(user *model.User) error
 	Update(user *model.User) error
@@ -12,10 +13,12 @@ type UserRepository interface {
 	FindByID(userID uint) (*model.User, error)
 }
 
+// Implementación de UserRepository
 type GormUserRepository struct {
 	DB *gorm.DB
 }
 
+// Implementación de los métodos de UserRepository
 func (ur *GormUserRepository) Create(user *model.User) error {
 	return ur.DB.Create(user).Error
 }

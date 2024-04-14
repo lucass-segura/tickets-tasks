@@ -5,6 +5,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// Operaciones que se pueden realizar con una tarea
 type TaskRepository interface {
 	Create(user *model.Task) error
 	Update(user *model.Task) error
@@ -12,10 +13,12 @@ type TaskRepository interface {
 	FindByID(userID uint) (*model.Task, error)
 }
 
+// Implementación de TaskRepository
 type GormTaskRepository struct {
 	DB *gorm.DB
 }
 
+// Implementación de los métodos de TaskRepository
 func (ts *GormTaskRepository) Create(task *model.Task) error {
 	return ts.DB.Create(task).Error
 }
